@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <h1>Login</h1>
+  <p>Sample form to verify templates work.</p>
+
+  <form method="post" action="/login">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" autocomplete="username" required />
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required />
+
+    <button type="submit">Sign in</button>
+  </form>
+
+  {% if error %}
+    <div class="error">{{ error }}</div>
+  {% endif %}
+
+  <div class="hint">Try: <code>admin</code> / <code>admin</code></div>
+{% endblock %}
