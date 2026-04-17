@@ -17,7 +17,7 @@ def read_root():
 
 @app.get("/login", response_class=HTMLResponse)
 def login_page(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request, "error": None})
+    return templates.TemplateResponse(request, "login.html", {"error": None})
 
 
 @app.post("/login", response_class=HTMLResponse)
@@ -27,11 +27,12 @@ def login_submit(
     password: str = Form(...),
 ):
     if username == "admin" and password == "admin":
-        return templates.TemplateResponse("welcome.html", {"request": request, "username": username})
+        return templates.TemplateResponse(request, "welcome.html", {"username": username})
 
     return templates.TemplateResponse(
+        request,
         "login.html",
-        {"request": request, "error": "Invalid username or password"},
+        {"error": "Invalid username or password"},
         status_code=401,
     )
 
